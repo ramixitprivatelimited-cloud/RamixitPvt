@@ -33,6 +33,7 @@ export default function AdminLogin() {
         setError('Invalid password');
       }
     } catch (err) {
+      console.error(err); // fixes @typescript-eslint/no-unused-vars
       setError('Login failed');
     } finally {
       setIsLoading(false);

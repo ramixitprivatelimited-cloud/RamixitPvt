@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface Contact {
@@ -38,22 +38,10 @@ export default function AdminDashboard() {
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    // Check authentication
-    const adminKey = localStorage.getItem('adminKey');
-    if (!adminKey) {
-      router.push('/admin');
-      return;
-    }
-
-    fetchContacts();
-  }, [currentPage, statusFilter, router]);
-
-  const fetchContacts = async () => {
+  const fetchContacts = useCallback(async () => {
     try {
       setLoading(true);
-      const adminKey = localStorage.getItem('adminKey');
-      
+
       const params = new URLSearchParams({
         adminKey: process.env.NEXT_PUBLIC_ADMIN_SECRET || 'default_key',
         page: currentPage.toString(),
@@ -62,7 +50,7 @@ export default function AdminDashboard() {
       });
 
       const response = await fetch(`/api/contact?${params}`);
-      
+
       if (response.status === 401) {
         localStorage.removeItem('adminKey');
         router.push('/admin');
@@ -76,18 +64,29 @@ export default function AdminDashboard() {
       const data = await response.json();
       setContacts(data.contacts);
       setPagination(data.pagination);
+      setError('');
     } catch (err) {
       setError('Failed to fetch contacts');
       console.error(err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, statusFilter, router]);
 
-  const updateContactStatus = async (contactId: string, newStatus: string) => {
+  useEffect(() => {
+    // Check authentication
+    const key = localStorage.getItem('adminKey');
+    if (!key) {
+      router.push('/admin');
+      return;
+    }
+    fetchContacts();
+  }, [fetchContacts, router]);
+
+  const updateContactStatus = async (contactId: string, newStatus: Contact['status']) => {
     try {
       const adminKey = process.env.NEXT_PUBLIC_ADMIN_SECRET || 'default_key';
-      
+
       const response = await fetch(`/api/contact/${contactId}?adminKey=${adminKey}`, {
         method: 'PATCH',
         headers: {
@@ -115,7 +114,7 @@ export default function AdminDashboard() {
 
     try {
       const adminKey = process.env.NEXT_PUBLIC_ADMIN_SECRET || 'default_key';
-      
+
       const response = await fetch(`/api/contact/${contactId}?adminKey=${adminKey}`, {
         method: 'DELETE',
       });
@@ -282,7 +281,7 @@ export default function AdminDashboard() {
                       </button>
                       <select
                         value={contact.status}
-                        onChange={(e) => updateContactStatus(contact._id, e.target.value)}
+                        onChange={(e) => updateContactStatus(contact._id, e.target.value as Contact['status'])}
                         className="text-sm border border-gray-300 rounded px-2 py-1"
                       >
                         <option value="new">New</option>
