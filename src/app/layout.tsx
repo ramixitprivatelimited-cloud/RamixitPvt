@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  icons:{
+    icon: "/image-6.png",
+  },
   title: "RAMIXIT PRIVATE LIMITED - Smart Energy Solutions",
   description: "Leading energy company providing sustainable and innovative smart energy solutions for residential and commercial properties.",
 };
