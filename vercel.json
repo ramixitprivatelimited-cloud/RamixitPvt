@@ -5,7 +5,7 @@
     }
   },
   "env": {
-    "MONGODB_URI": "@mongodb_uri",
+    "MONGO_URI": "@MONGO_URI",
     "ADMIN_SECRET_KEY": "@admin_secret_key",
     "NEXT_PUBLIC_ADMIN_PASSWORD": "@admin_password",
     "NEXT_PUBLIC_ADMIN_SECRET": "@admin_secret"

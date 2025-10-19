@@ -19,7 +19,7 @@ Set these environment variables in Vercel:
 
 ### Required Variables:
 ```
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/ramixit-db?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/ramixit-db?retryWrites=true&w=majority
 ADMIN_SECRET_KEY=your-very-secure-admin-secret-key-here
 NEXT_PUBLIC_ADMIN_PASSWORD=your-admin-password
 NEXT_PUBLIC_ADMIN_SECRET=your-very-secure-admin-secret-key-here
