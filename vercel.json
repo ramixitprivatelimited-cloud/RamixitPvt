@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "ADMIN_SECRET_KEY": "@admin_secret_key",
+    "NEXT_PUBLIC_ADMIN_PASSWORD": "@admin_password",
+    "NEXT_PUBLIC_ADMIN_SECRET": "@admin_secret"
+  }
+}
