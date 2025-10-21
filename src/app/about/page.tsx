@@ -250,14 +250,14 @@ export default function About() {
               <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">👨‍💼</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Alex Johnson</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Ramanand Dikshit & Usharani Dikshit</h3>
               <p className="text-green-600 font-medium mb-2">Founder & CEO</p>
               <p className="text-gray-600">
                 {"Young entrepreneur with a vision to revolutionize solar energy through strategic partnerships."}
               </p>
             </div>
             
-            <div className="text-center bg-white p-6 rounded-lg shadow-md">
+            {/* <div className="text-center bg-white p-6 rounded-lg shadow-md">
               <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">👩‍🔧</span>
               </div>
@@ -277,7 +277,7 @@ export default function About() {
               <p className="text-gray-600">
                 {"Brings 10+ years of operational excellence from Sunrise India to ensure quality installations and customer satisfaction."}
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
